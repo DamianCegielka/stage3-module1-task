@@ -73,14 +73,14 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public int readByIdNews(Long index) throws IOException {
+    public NewsDtoResponse readByIdNews(Long index) throws IOException {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
             if (b) newsDtoResponse.map(x);
             if (b) newsDtoResponse.print();
         });
-        return 0;
+        return newsDtoResponse;
     }
 
     @Override
