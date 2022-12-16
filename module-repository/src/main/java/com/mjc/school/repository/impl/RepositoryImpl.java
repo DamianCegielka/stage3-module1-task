@@ -2,7 +2,7 @@ package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsDtoRequest;
-import com.mjc.school.repository.dto.NewsDtoResponse;
+import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.Author;
 import com.mjc.school.repository.entity.News;
 
@@ -62,10 +62,10 @@ public class RepositoryImpl implements Repository {
     @Override
     public void readAllNews() throws IOException {
         try {
-            NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+            NewsModelResponse newsModelResponse = new NewsModelResponse();
             listNews.forEach(x -> {
-                newsDtoResponse.map(x);
-                newsDtoResponse.print();
+                newsModelResponse.map(x);
+                newsModelResponse.print();
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,36 +73,36 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public NewsDtoResponse readByIdNews(Long index) throws IOException {
-        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+    public NewsModelResponse readByIdNews(Long index) throws IOException {
+        NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
-            if (b) newsDtoResponse.map(x);
-            if (b) newsDtoResponse.print();
+            if (b) newsModelResponse.map(x);
+            if (b) newsModelResponse.print();
         });
-        return newsDtoResponse;
+        return newsModelResponse;
     }
 
     @Override
     public void createNews(NewsDtoRequest newsDtoRequest) {
         News news = new News(newsDtoRequest);
-        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
-        newsDtoResponse.map(news);
-        newsDtoResponse.print();
+        NewsModelResponse newsModelResponse = new NewsModelResponse();
+        newsModelResponse.map(news);
+        newsModelResponse.print();
         listNews.add(news);
     }
 
     @Override
     public void updateNews(Long index, NewsDtoRequest newsDtoRequest) {
-        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+        NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
             if (b) x.setTitle(newsDtoRequest.getTitle());
             if (b) x.setContent(newsDtoRequest.getContent());
             if (b) x.setAuthorId(newsDtoRequest.getAuthorId());
             if (b) x.setLastUpdateTime(LocalDateTime.now());
-            if (b) newsDtoResponse.map(x);
-            if (b) newsDtoResponse.print();
+            if (b) newsModelResponse.map(x);
+            if (b) newsModelResponse.print();
         });
     }
 

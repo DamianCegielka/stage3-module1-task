@@ -4,7 +4,7 @@ import com.mjc.school.repository.entity.News;
 
 import java.time.LocalDateTime;
 
-public class NewsDtoResponse {
+public class NewsModelResponse {
 
     private Long id;
     private String title;
