@@ -1,7 +1,7 @@
 package com.mjc.school.service;
 
 import com.mjc.school.repository.Repository;
-import com.mjc.school.repository.RepositoryImpl;
+import com.mjc.school.repository.impl.RepositoryImpl;
 import com.mjc.school.repository.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.*;
 

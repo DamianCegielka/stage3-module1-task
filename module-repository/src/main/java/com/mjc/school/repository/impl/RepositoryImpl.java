@@ -1,5 +1,6 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.impl;
 
+import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsDtoRequest;
 import com.mjc.school.repository.dto.NewsDtoResponse;
 import com.mjc.school.repository.entity.Author;
