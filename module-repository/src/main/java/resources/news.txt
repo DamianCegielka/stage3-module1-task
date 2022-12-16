@@ -1,0 +1,20 @@
+1;BANKS AND FINANCIAL INSTITUTIONS;A city letting people pay parking fines with canned goods for the hungry.;2022-12-24T16:22:30;2022-12-24T16:22:30;4
+2;AGRICULTURE, CONSERVATION AND FORESTRY;A city letting people pay parking fines with canned goods for the hungry.;2023-01-06T21:21:20;2023-01-06T21:21:20;17
+3;PROBATE CODE;San Francisco's mobile shower truck for the homeless.;2022-12-20T13:02:45;2022-12-20T13:02:45;4
+4;AGRICULTURE, CONSERVATION AND FORESTRY;This little boy giving his sister bone marrow, even though he believed it would kill him.;2023-01-03T12:42:53;2023-01-03T12:42:53;13
+5;MAINE BUSINESS CORPORATION ACT;Rosa Parks has been honored with a reserved front seat on Texas buses.;2022-12-13T12:47:28;2022-12-13T12:47:28;11
+6;COURT PROCEDURE -- EVIDENCE;A Nigerian boy solves a 30-year math equation, is recognized by a Japanese university.;2022-12-27T08:19:03;2022-12-27T08:19:03;6
+7;PROBATE CODE;A man with an intestinal tumor offering unconditional love through Craigslist ads, and sparking a chain of love.;2022-12-28T14:32:22;2022-12-28T14:32:22;14
+8;COURT PROCEDURE -- EVIDENCE;A psychic daughter confiding in her mum, "I've had a lot of mums but you are the best by far.";2022-12-29T02:05:06;2022-12-29T02:05:06;19
+9;COURT PROCEDURE -- CRIMINAL;The 18-year old grandson taking his grandma to prom, and other feel-goods.;2022-12-24T07:21:03;2022-12-24T07:21:03;20
+10;AGRICULTURE, CONSERVATION AND FORESTRY;A city letting people pay parking fines with canned goods for the hungry.;2023-01-03T10:34:13;2023-01-03T10:34:13;2
+11;UNIFORM COMMERCIAL CODE;A secret decoration mission that helped this widow rediscover her holiday spirit.;2023-01-08T13:21:58;2023-01-08T13:21:58;7
+12;MAINE BUSINESS CORPORATION ACT;This dedication to eradicating a killer disease.;2022-12-24T13:46:34;2022-12-24T13:46:34;8
+13;AERONAUTICS;This MN refugee center fielding 4-5 times the needed amount of people to help.;2022-12-15T14:22:13;2022-12-15T14:22:13;15
+14;TRUSTS;The reaction of a dog rescued by a firefighter. in the words, of GMP Lead Editor, Shawn Henfling, "Dogs are my favorite people.";2022-12-17T16:39;2022-12-17T16:39;17
+15;MAINE BUSINESS CORPORATION ACT;Ex-Bengal, Devon Still, whose social media posts about his daughter's stage-four neuroblastoma cancer went viral, announcing his baby girl's remission.;2023-01-11T01:00:31;2023-01-11T01:00:31;1
+16;AERONAUTICS;A secret decoration mission that helped this widow rediscover her holiday spirit.;2022-12-21T19:01:53;2022-12-21T19:01:53;10
+17;MAINE BUSINESS CORPORATION ACT;An inspiring couple recreating their wedding photo 70 years later.;2022-12-19T09:52:15;2022-12-19T09:52:15;14
+18;JUDICIARY;The reaction of a dog rescued by a firefighter. in the words, of GMP Lead Editor, Shawn Henfling, "Dogs are my favorite people.";2022-12-15T03:59:21;2022-12-15T03:59:21;12
+19;PROBATE CODE;Nineteen of the very best uplifting photos of the day.;2023-01-02T16:32:01;2023-01-02T16:32:01;5
+20;AMUSEMENTS AND SPORTS;This morality Christmas ad with the joyful twist, which will make your eyelids sweaty.;2022-12-19T14:48:10;2022-12-19T14:48:10;18
