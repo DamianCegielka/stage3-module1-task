@@ -84,12 +84,13 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void createNews(NewsDtoRequest newsDtoRequest) {
+    public NewsModelResponse createNews(NewsDtoRequest newsDtoRequest) {
         News news = new News(newsDtoRequest);
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         newsModelResponse.map(news);
         newsModelResponse.print();
         listNews.add(news);
+        return newsModelResponse;
     }
 
     @Override

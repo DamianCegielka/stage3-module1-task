@@ -14,7 +14,7 @@ public interface Repository {
 
     NewsModelResponse readByIdNews(Long index) throws IOException;
 
-    void createNews(NewsDtoRequest newsDtoRequest);
+    NewsModelResponse createNews(NewsDtoRequest newsDtoRequest);
 
     void updateNews(Long index, NewsDtoRequest newsDtoRequest);
 
