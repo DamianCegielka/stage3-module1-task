@@ -60,7 +60,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void getAllNews() throws IOException {
+    public void readAllNews() throws IOException {
         try {
             NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
             listNews.forEach(x -> {
@@ -73,7 +73,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public int getOneNews(Long index) throws IOException {
+    public int readByIdNews(Long index) throws IOException {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
@@ -84,7 +84,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void addNews(NewsDtoRequest newsDtoRequest) {
+    public void createNews(NewsDtoRequest newsDtoRequest) {
         News news = new News(newsDtoRequest);
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         newsDtoResponse.map(news);

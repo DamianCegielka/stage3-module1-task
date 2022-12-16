@@ -30,7 +30,7 @@ public class ServiceImpl implements Service {
     @Override
     public void readAllNews() throws IOException {
         System.out.println(GET_ALL_NEWS);
-        repository.getAllNews();
+        repository.readAllNews();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ServiceImpl implements Service {
             System.out.println(ENTER_NEWS_ID);
             Long index = takeNumberFromKeyboard();
             if (repository.isNewsOnList(index)) {
-                repository.getOneNews(index);
+                repository.readByIdNews(index);
             } else {
                 throw new NewsDoesNotExistException(index);
             }
@@ -58,7 +58,7 @@ public class ServiceImpl implements Service {
             lengthBetween5And30Symbols(newsDtoRequest.getTitle());
             lengthBetween5And255Symbols(newsDtoRequest.getContent());
             if (!repository.isAuthorOnList(newsDtoRequest.getAuthorId())){throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());}
-            repository.addNews(newsDtoRequest);
+            repository.createNews(newsDtoRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }

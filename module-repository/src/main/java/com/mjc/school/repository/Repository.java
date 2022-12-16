@@ -9,11 +9,11 @@ public interface Repository {
 
     void loadAuthorsFromFiles();
 
-    void getAllNews() throws IOException;
+    void readAllNews() throws IOException;
 
-    int getOneNews(Long index) throws IOException;
+    int readByIdNews(Long index) throws IOException;
 
-    void addNews(NewsDtoRequest newsDtoRequest);
+    void createNews(NewsDtoRequest newsDtoRequest);
 
     void updateNews(Long index, NewsDtoRequest newsDtoRequest);
 
