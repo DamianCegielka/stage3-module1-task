@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.mjc.school.controller","l":"Controller"},{"p":"com.mjc.school.controller","l":"ControllerImpl"}];updateSearchResults();

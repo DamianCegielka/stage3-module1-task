@@ -1,0 +1,11 @@
+-classpath 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\build\\classes\\java\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\build\\resources\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\build\\libs\\module-repository.jar'
+-d 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\build\\docs\\javadoc'
+-doctitle 'module-service API'
+-notimestamp 
+-quiet 
+-windowtitle 'module-service API'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\src\\main\\java\\com\\mjc\\school\\service\\exception\\AuthorIdShouldBeNummberException.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\src\\main\\java\\com\\mjc\\school\\service\\exception\\LengthIsNotBetween5and255Exception.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\src\\main\\java\\com\\mjc\\school\\service\\exception\\LengthIsNotBetween5and30Exception.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\src\\main\\java\\com\\mjc\\school\\service\\Service.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\src\\main\\java\\com\\mjc\\school\\service\\ServiceImpl.java'

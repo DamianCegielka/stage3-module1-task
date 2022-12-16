@@ -1,0 +1,7 @@
+-classpath 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-main\\build\\classes\\java\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-main\\build\\resources\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\build\\libs\\module-web.jar;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\build\\libs\\module-service.jar'
+-d 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-main\\build\\docs\\javadoc'
+-doctitle 'module-main API'
+-notimestamp 
+-quiet 
+-windowtitle 'module-main API'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-main\\src\\main\\java\\com\\mjc\\school\\Main.java'

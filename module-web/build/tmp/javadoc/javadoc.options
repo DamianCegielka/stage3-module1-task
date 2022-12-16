@@ -1,0 +1,8 @@
+-classpath 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\build\\classes\\java\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\build\\resources\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-service\\build\\libs\\module-service.jar'
+-d 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\build\\docs\\javadoc'
+-doctitle 'module-web API'
+-notimestamp 
+-quiet 
+-windowtitle 'module-web API'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\src\\main\\java\\com\\mjc\\school\\controller\\Controller.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-web\\src\\main\\java\\com\\mjc\\school\\controller\\ControllerImpl.java'

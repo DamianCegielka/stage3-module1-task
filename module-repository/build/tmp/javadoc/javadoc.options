@@ -1,0 +1,12 @@
+-classpath 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\build\\classes\\java\\main;C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\build\\resources\\main'
+-d 'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\build\\docs\\javadoc'
+-doctitle 'module-repository API'
+-notimestamp 
+-quiet 
+-windowtitle 'module-repository API'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\dto\\NewsDtoRequest.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\dto\\NewsDtoResponse.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\entity\\Author.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\entity\\News.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\Repository.java'
+'C:\\Users\\Damian\\Desktop\\PROJECT_EPAM\\stage3-module1-task\\module-repository\\src\\main\\java\\com\\mjc\\school\\repository\\RepositoryImpl.java'
