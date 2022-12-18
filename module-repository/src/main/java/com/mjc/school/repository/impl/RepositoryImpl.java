@@ -2,6 +2,7 @@ package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.Author;
 import com.mjc.school.repository.entity.News;
@@ -96,13 +97,13 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public NewsModelResponse updateNews(Long index, NewsDtoRequest newsDtoRequest) {
+    public NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
-            boolean b = x.getId().equals(index);
-            if (b) x.setTitle(newsDtoRequest.getTitle());
-            if (b) x.setContent(newsDtoRequest.getContent());
-            if (b) x.setAuthorId(newsDtoRequest.getAuthorId());
+            boolean b = x.getId().equals(newsModelRequestWithIndex.getIndex());
+            if (b) x.setTitle(newsModelRequestWithIndex.getTitle());
+            if (b) x.setContent(newsModelRequestWithIndex.getContent());
+            if (b) x.setAuthorId(newsModelRequestWithIndex.getAuthorId());
             if (b) x.setLastUpdateTime(LocalDateTime.now());
             if (b) newsModelResponse.map(x);
             if (b) newsModelResponse.print();
@@ -112,7 +113,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public boolean deleteNews(Long index) {
+    public Boolean deleteNews(Long index) {
         if (listNews.removeIf(x -> x.getId().equals(index))) {
             System.out.println(true);
             return true;

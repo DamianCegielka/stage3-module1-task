@@ -1,6 +1,7 @@
 package com.mjc.school.service;
 
 import com.mjc.school.repository.Repository;
+import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.impl.RepositoryImpl;
 import com.mjc.school.repository.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.*;
@@ -71,11 +72,16 @@ public class ServiceImpl implements Service {
             System.out.println(ENTER_NEWS_ID);
             Long index = takeNumberFromKeyboard();
             NewsDtoRequest newsDtoRequest = askQuestionsToGetDtoRequest();
+            NewsModelRequestWithIndex newsModelRequestWithIndex=new NewsModelRequestWithIndex();
+            newsModelRequestWithIndex.setIndex(index);
+            newsModelRequestWithIndex.setTitle(newsDtoRequest.getTitle());
+            newsModelRequestWithIndex.setContent(newsDtoRequest.getContent());
+            newsModelRequestWithIndex.setAuthorId(newsDtoRequest.getAuthorId());
             if (repository.isNewsOnList(index)) {
                 if (repository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
                     if ((lengthBetween5And30Symbols(newsDtoRequest.getTitle())) &&
                             (lengthBetween5And255Symbols(newsDtoRequest.getContent()))){
-                            repository.updateNews(index, newsDtoRequest);
+                            repository.updateNews(newsModelRequestWithIndex);
                     }
                 } else {
                     throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());
