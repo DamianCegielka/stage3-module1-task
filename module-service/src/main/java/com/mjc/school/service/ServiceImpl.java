@@ -24,8 +24,8 @@ public class ServiceImpl implements Service {
     private final Repository repository = new RepositoryImpl();
 
     public void loadAllData() {
-        repository.loadNewsFromFiles();
-        repository.loadAuthorsFromFiles();
+        repository.loadNewsFromDataSource();
+        repository.loadAuthorsFromDataSource();
     }
 
     @Override

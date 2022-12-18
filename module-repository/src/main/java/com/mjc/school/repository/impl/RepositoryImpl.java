@@ -21,10 +21,10 @@ public class RepositoryImpl implements Repository {
     private ArrayList<Author> listAuthor = new ArrayList<>();
 
     @Override
-    public void loadNewsFromFiles() {
-        String filePath = "module-repository\\src\\main\\java\\resources\\news.txt";
+    public void loadNewsFromDataSource() {
+        String filePathDataSource = "module-repository\\src\\main\\java\\resources\\news.txt";
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePathDataSource))) {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -44,10 +44,10 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void loadAuthorsFromFiles() {
-        String filePath = "module-repository\\src\\main\\java\\resources\\author.txt";
+    public void loadAuthorsFromDataSource() {
+        String filePathDataSource = "module-repository\\src\\main\\java\\resources\\author.txt";
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePathDataSource))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] arrayLine = line.split(";");

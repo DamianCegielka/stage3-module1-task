@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Repository {
-    void loadNewsFromFiles();
+    void loadNewsFromDataSource();
 
-    void loadAuthorsFromFiles();
+    void loadAuthorsFromDataSource();
 
     List<News> readAllNews() throws IOException;
 
