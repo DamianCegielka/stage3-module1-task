@@ -11,11 +11,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RepositoryImpl implements Repository {
 
 
-    private ArrayList<News> listNews = new ArrayList<>();
+    private List<News> listNews = new ArrayList<>();
     private ArrayList<Author> listAuthor = new ArrayList<>();
 
     @Override
@@ -60,7 +61,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void readAllNews() throws IOException {
+    public List<News> readAllNews() throws IOException {
         try {
             NewsModelResponse newsModelResponse = new NewsModelResponse();
             listNews.forEach(x -> {
@@ -70,6 +71,7 @@ public class RepositoryImpl implements Repository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return listNews;
     }
 
     @Override
@@ -94,7 +96,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void updateNews(Long index, NewsDtoRequest newsDtoRequest) {
+    public NewsModelResponse updateNews(Long index, NewsDtoRequest newsDtoRequest) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
@@ -104,13 +106,19 @@ public class RepositoryImpl implements Repository {
             if (b) x.setLastUpdateTime(LocalDateTime.now());
             if (b) newsModelResponse.map(x);
             if (b) newsModelResponse.print();
+
         });
+        return newsModelResponse;
     }
 
     @Override
-    public void deleteNews(Long index) {
+    public boolean deleteNews(Long index) {
         if (listNews.removeIf(x -> x.getId().equals(index))) {
             System.out.println(true);
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
