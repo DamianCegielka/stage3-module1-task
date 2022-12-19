@@ -13,31 +13,31 @@ import java.util.List;
 
 public class RepositoryImpl implements Repository {
 
-    private final DataSource dataSource = new DataSourceImpl();
+    private final DataSource newsAndAuthorDataSource = new DataSourceImpl();
 
     public void loadDataFromDataSource() {
-        dataSource.loadNewsFromDataSource();
-        dataSource.loadAuthorsFromDataSource();
+        newsAndAuthorDataSource.loadNewsFromDataSource();
+        newsAndAuthorDataSource.loadAuthorsFromDataSource();
     }
 
     @Override
     public List<News> readAllNews() {
         try {
             NewsModelResponse newsModelResponse = new NewsModelResponse();
-            dataSource.getListNews().forEach(x -> {
+            newsAndAuthorDataSource.getListNews().forEach(x -> {
                 newsModelResponse.map(x);
                 newsModelResponse.print();
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return dataSource.getListNews();
+        return newsAndAuthorDataSource.getListNews();
     }
 
     @Override
     public NewsModelResponse readByIdNews(Long index) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
-        dataSource.getListNews().forEach(x -> {
+        newsAndAuthorDataSource.getListNews().forEach(x -> {
             boolean b = x.getId().equals(index);
             if (b) newsModelResponse.map(x);
             if (b) newsModelResponse.print();
@@ -51,14 +51,14 @@ public class RepositoryImpl implements Repository {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         newsModelResponse.map(news);
         newsModelResponse.print();
-        dataSource.getListNews().add(news);
+        newsAndAuthorDataSource.getListNews().add(news);
         return newsModelResponse;
     }
 
     @Override
     public NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
-        dataSource.getListNews().forEach(x -> {
+        newsAndAuthorDataSource.getListNews().forEach(x -> {
             boolean b = x.getId().equals(newsModelRequestWithIndex.getIndex());
             if (b) x.setTitle(newsModelRequestWithIndex.getTitle());
             if (b) x.setContent(newsModelRequestWithIndex.getContent());
@@ -73,7 +73,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Boolean deleteNews(Long index) {
-        if (dataSource.getListNews().removeIf(x -> x.getId().equals(index))) {
+        if (newsAndAuthorDataSource.getListNews().removeIf(x -> x.getId().equals(index))) {
             System.out.println(true);
             return true;
         } else {
@@ -83,7 +83,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public boolean isAuthorOnList(Long index) {
-        for (Author author : dataSource.getListAuthor()) {
+        for (Author author : newsAndAuthorDataSource.getListAuthor()) {
             if (author.getId().equals(index)) {
                 return true;
             }
@@ -93,7 +93,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public boolean isNewsOnList(Long index) {
-        for (News news : dataSource.getListNews()) {
+        for (News news : newsAndAuthorDataSource.getListNews()) {
             if (news.getId().equals(index)) {
                 return true;
             }
