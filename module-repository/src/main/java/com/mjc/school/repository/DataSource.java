@@ -14,8 +14,8 @@ public class DataSource {
     private static final String FILE_PATH_DATA_SOURCE_NEWS = "module-repository\\src\\main\\java\\resources\\news.txt";
     private static final String FILE_PATH_DATA_SOURCE_AUTHOR = "module-repository\\src\\main\\java\\resources\\author.txt";
 
-    private final List<News> listNews = new ArrayList<>();
-    private final ArrayList<Author> listAuthor = new ArrayList<>();
+    private List<News> listNews = new ArrayList<>();
+    private ArrayList<Author> listAuthor = new ArrayList<>();
 
     public List<News> getListNews() {
         return listNews;
