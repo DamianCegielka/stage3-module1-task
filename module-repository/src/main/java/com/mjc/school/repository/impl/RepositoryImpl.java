@@ -1,84 +1,43 @@
 package com.mjc.school.repository.impl;
 
+import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.Repository;
-import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.Author;
 import com.mjc.school.repository.entity.News;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RepositoryImpl implements Repository {
 
+    private final DataSource dataSource = new DataSourceImpl();
 
-    private List<News> listNews = new ArrayList<>();
-    private ArrayList<Author> listAuthor = new ArrayList<>();
-
-    @Override
-    public void loadNewsFromDataSource() {
-        String filePathDataSource = "module-repository\\src\\main\\java\\resources\\news.txt";
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePathDataSource))) {
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] arrayLine = line.split(";");
-                News news = new News();
-                news.setId(Long.parseLong(arrayLine[0]));
-                news.setTitle(arrayLine[1]);
-                news.setContent(arrayLine[2]);
-                news.setCreateDate(LocalDateTime.parse(arrayLine[3]));
-                news.setLastUpdateTime(LocalDateTime.parse(arrayLine[4]));
-                news.setAuthorId(Long.parseLong(arrayLine[5]));
-                listNews.add(news);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void loadDataFromDataSource() {
+        dataSource.loadNewsFromDataSource();
+        dataSource.loadAuthorsFromDataSource();
     }
 
     @Override
-    public void loadAuthorsFromDataSource() {
-        String filePathDataSource = "module-repository\\src\\main\\java\\resources\\author.txt";
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePathDataSource))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] arrayLine = line.split(";");
-                Author author = new Author();
-                author.setId(Long.parseLong(arrayLine[0]));
-                author.setName(arrayLine[1]);
-                listAuthor.add(author);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public List<News> readAllNews() throws IOException {
+    public List<News> readAllNews() {
         try {
             NewsModelResponse newsModelResponse = new NewsModelResponse();
-            listNews.forEach(x -> {
+            dataSource.getListNews().forEach(x -> {
                 newsModelResponse.map(x);
                 newsModelResponse.print();
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listNews;
+        return dataSource.getListNews();
     }
 
     @Override
-    public NewsModelResponse readByIdNews(Long index) throws IOException {
+    public NewsModelResponse readByIdNews(Long index) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
-        listNews.forEach(x -> {
+        dataSource.getListNews().forEach(x -> {
             boolean b = x.getId().equals(index);
             if (b) newsModelResponse.map(x);
             if (b) newsModelResponse.print();
@@ -87,19 +46,19 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public NewsModelResponse createNews(NewsDtoRequest newsDtoRequest) {
-        News news = new News(newsDtoRequest);
+    public NewsModelResponse createNews(NewsModelRequest newsModelRequest) {
+        News news = new News(newsModelRequest);
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         newsModelResponse.map(news);
         newsModelResponse.print();
-        listNews.add(news);
+        dataSource.getListNews().add(news);
         return newsModelResponse;
     }
 
     @Override
     public NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
-        listNews.forEach(x -> {
+        dataSource.getListNews().forEach(x -> {
             boolean b = x.getId().equals(newsModelRequestWithIndex.getIndex());
             if (b) x.setTitle(newsModelRequestWithIndex.getTitle());
             if (b) x.setContent(newsModelRequestWithIndex.getContent());
@@ -114,18 +73,17 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public Boolean deleteNews(Long index) {
-        if (listNews.removeIf(x -> x.getId().equals(index))) {
+        if (dataSource.getListNews().removeIf(x -> x.getId().equals(index))) {
             System.out.println(true);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     @Override
     public boolean isAuthorOnList(Long index) {
-        for (Author author : listAuthor) {
+        for (Author author : dataSource.getListAuthor()) {
             if (author.getId().equals(index)) {
                 return true;
             }
@@ -135,7 +93,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public boolean isNewsOnList(Long index) {
-        for (News news : listNews) {
+        for (News news : dataSource.getListNews()) {
             if (news.getId().equals(index)) {
                 return true;
             }

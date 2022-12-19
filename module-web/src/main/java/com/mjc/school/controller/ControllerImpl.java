@@ -9,10 +9,6 @@ import com.mjc.school.service.ServiceImpl;
 
 public class ControllerImpl implements Controller {
 
-    public ControllerImpl() {
-        //This is empty Constructor
-    }
-
     private static final String MENU_TEXT =
             """
                     Enter the number of operation:
@@ -27,7 +23,7 @@ public class ControllerImpl implements Controller {
     private int chosenNumber = -1;
 
     @Override
-    public void mainController() throws IOException {
+    public void mainController(){
 
         Service service = new ServiceImpl();
         service.loadAllData();

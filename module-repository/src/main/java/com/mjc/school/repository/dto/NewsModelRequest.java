@@ -1,11 +1,11 @@
 package com.mjc.school.repository.dto;
 
-public class NewsDtoRequest {
+public class NewsModelRequest {
     String title;
     String content;
     Long authorId;
 
-    public NewsDtoRequest() {
+    public NewsModelRequest() {
         //This is empty Constructor
     }
 

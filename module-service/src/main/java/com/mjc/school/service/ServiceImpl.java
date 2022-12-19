@@ -3,7 +3,7 @@ package com.mjc.school.service;
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.impl.RepositoryImpl;
-import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.service.exception.*;
 
 import java.io.BufferedReader;
@@ -24,8 +24,7 @@ public class ServiceImpl implements Service {
     private final Repository repository = new RepositoryImpl();
 
     public void loadAllData() {
-        repository.loadNewsFromDataSource();
-        repository.loadAuthorsFromDataSource();
+        repository.loadDataFromDataSource();
     }
 
     @Override
@@ -35,7 +34,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void readNewsById() throws IOException {
+    public void readNewsById() {
         try {
             System.out.println(GET_NEWS_ID);
             System.out.println(ENTER_NEWS_ID);
@@ -55,36 +54,36 @@ public class ServiceImpl implements Service {
     public void createNews() {
         try {
             System.out.println(CREATE_NEWS);
-            NewsDtoRequest newsDtoRequest = askQuestionsToGetDtoRequest();
-            lengthBetween5And30Symbols(newsDtoRequest.getTitle());
-            lengthBetween5And255Symbols(newsDtoRequest.getContent());
-            if (!repository.isAuthorOnList(newsDtoRequest.getAuthorId())){throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());}
-            repository.createNews(newsDtoRequest);
+            NewsModelRequest newsModelRequest = askQuestionsToGetDtoRequest();
+            lengthBetween5And30Symbols(newsModelRequest.getTitle());
+            lengthBetween5And255Symbols(newsModelRequest.getContent());
+            if (!repository.isAuthorOnList(newsModelRequest.getAuthorId())){throw new AuthorIdDoesNotExistException(newsModelRequest.getAuthorId());}
+            repository.createNews(newsModelRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void updateNews() throws IOException {
+    public void updateNews() {
         try {
             System.out.println(UPDATE_NEWS);
             System.out.println(ENTER_NEWS_ID);
             Long index = takeNumberFromKeyboard();
-            NewsDtoRequest newsDtoRequest = askQuestionsToGetDtoRequest();
+            NewsModelRequest newsModelRequest = askQuestionsToGetDtoRequest();
             NewsModelRequestWithIndex newsModelRequestWithIndex=new NewsModelRequestWithIndex();
             newsModelRequestWithIndex.setIndex(index);
-            newsModelRequestWithIndex.setTitle(newsDtoRequest.getTitle());
-            newsModelRequestWithIndex.setContent(newsDtoRequest.getContent());
-            newsModelRequestWithIndex.setAuthorId(newsDtoRequest.getAuthorId());
+            newsModelRequestWithIndex.setTitle(newsModelRequest.getTitle());
+            newsModelRequestWithIndex.setContent(newsModelRequest.getContent());
+            newsModelRequestWithIndex.setAuthorId(newsModelRequest.getAuthorId());
             if (repository.isNewsOnList(index)) {
-                if (repository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
-                    if ((lengthBetween5And30Symbols(newsDtoRequest.getTitle())) &&
-                            (lengthBetween5And255Symbols(newsDtoRequest.getContent()))){
+                if (repository.isAuthorOnList(newsModelRequest.getAuthorId())) {
+                    if ((lengthBetween5And30Symbols(newsModelRequest.getTitle())) &&
+                            (lengthBetween5And255Symbols(newsModelRequest.getContent()))){
                             repository.updateNews(newsModelRequestWithIndex);
                     }
                 } else {
-                    throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());
+                    throw new AuthorIdDoesNotExistException(newsModelRequest.getAuthorId());
                 }
             } else {
                 throw new NewsDoesNotExistException(index);
@@ -95,7 +94,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void removeNews() throws IOException {
+    public void removeNews() {
         try {
             System.out.println(REMOVE_NEWS);
             System.out.println(ENTER_NEWS_ID);
@@ -111,8 +110,8 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public NewsDtoRequest askQuestionsToGetDtoRequest() {
-        NewsDtoRequest newsDTOCreation = new NewsDtoRequest();
+    public NewsModelRequest askQuestionsToGetDtoRequest() {
+        NewsModelRequest newsDTOCreation = new NewsModelRequest();
         try {
             System.out.println(ENTER_TITLE);
             newsDTOCreation.setTitle(takeStringFromKeyboard());

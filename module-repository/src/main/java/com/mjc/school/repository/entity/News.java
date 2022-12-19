@@ -1,6 +1,6 @@
 package com.mjc.school.repository.entity;
 
-import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequest;
 
 import java.time.LocalDateTime;
 
@@ -62,7 +62,7 @@ public class News {
         this.authorId = authorId;
     }
 
-    public News(NewsDtoRequest newsDTOCreation) {
+    public News(NewsModelRequest newsDTOCreation) {
         idGenerator++;
         this.id = News.idGenerator;
         this.title = newsDTOCreation.getTitle();

@@ -1,6 +1,6 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.service.exception.LengthIsNotBetween5and255Exception;
 
 import java.io.IOException;
@@ -11,15 +11,15 @@ public interface Service {
 
     void readAllNews() throws IOException;
 
-    void readNewsById() throws IOException;
+    void readNewsById();
 
     void createNews();
 
-    void updateNews() throws IOException;
+    void updateNews();
 
-    void removeNews() throws IOException;
+    void removeNews();
 
-    NewsDtoRequest askQuestionsToGetDtoRequest();
+    NewsModelRequest askQuestionsToGetDtoRequest();
 
     String takeStringFromKeyboard() throws IOException;
 

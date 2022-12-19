@@ -1,6 +1,6 @@
 package com.mjc.school.repository;
 
-import com.mjc.school.repository.dto.NewsDtoRequest;
+import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.News;
@@ -9,15 +9,14 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Repository {
-    void loadNewsFromDataSource();
 
-    void loadAuthorsFromDataSource();
+    void loadDataFromDataSource();
 
     List<News> readAllNews() throws IOException;
 
-    NewsModelResponse readByIdNews(Long index) throws IOException;
+    NewsModelResponse readByIdNews(Long index);
 
-    NewsModelResponse createNews(NewsDtoRequest newsDtoRequest);
+    NewsModelResponse createNews(NewsModelRequest newsModelRequest);
 
     NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex);
 
