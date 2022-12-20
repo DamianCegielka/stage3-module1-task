@@ -1,23 +1,26 @@
 package com.mjc.school.service;
 
 import com.mjc.school.repository.dto.NewsModelRequest;
+import com.mjc.school.repository.entity.News;
+import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.LengthIsNotBetween5and255Exception;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface Service {
 
     void loadAllData();
 
-    void readAllNews() throws IOException;
+    List<News> readAllNews() throws IOException;
 
-    void readNewsById();
+    void readByIdNews();
 
-    void createNews();
+    NewsDtoResponse createNews();
 
-    void updateNews();
+    NewsDtoResponse updateNews();
 
-    void removeNews();
+    void deleteNews();
 
     NewsModelRequest askQuestionsToGetDtoRequest();
 

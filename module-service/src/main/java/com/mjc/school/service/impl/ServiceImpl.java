@@ -2,14 +2,19 @@ package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
+import com.mjc.school.repository.dto.NewsModelResponse;
+import com.mjc.school.repository.entity.News;
 import com.mjc.school.repository.impl.RepositoryImpl;
 import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.service.Service;
+import com.mjc.school.service.Validator;
+import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class ServiceImpl implements Service {
 
@@ -24,18 +29,21 @@ public class ServiceImpl implements Service {
     private static final String REMOVE_NEWS = "Operation: Remove news by id.";
     private final Repository repository = new RepositoryImpl();
 
+    private final Validator validator=new Validator();
+
     public void loadAllData() {
         repository.loadDataFromDataSource();
     }
 
     @Override
-    public void readAllNews() throws IOException {
+    public List<News> readAllNews() throws IOException {
         System.out.println(GET_ALL_NEWS);
-        repository.readAllNews();
+        List<News> newsList=repository.readAllNews();
+        return newsList;
     }
 
     @Override
-    public void readNewsById() {
+    public void readByIdNews() {
         try {
             System.out.println(GET_NEWS_ID);
             System.out.println(ENTER_NEWS_ID);
@@ -52,21 +60,25 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void createNews() {
+    public NewsDtoResponse createNews() {
+        NewsDtoResponse newsDtoResponse=new NewsDtoResponse();
         try {
             System.out.println(CREATE_NEWS);
             NewsModelRequest newsModelRequest = askQuestionsToGetDtoRequest();
             lengthBetween5And30Symbols(newsModelRequest.getTitle());
             lengthBetween5And255Symbols(newsModelRequest.getContent());
             if (!repository.isAuthorOnList(newsModelRequest.getAuthorId())){throw new AuthorIdDoesNotExistException(newsModelRequest.getAuthorId());}
-            repository.createNews(newsModelRequest);
+            NewsModelResponse newsModelResponse= repository.createNews(newsModelRequest);
+            newsDtoResponse.map(newsModelResponse);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return newsDtoResponse;
     }
 
     @Override
-    public void updateNews() {
+    public NewsDtoResponse updateNews() {
+        NewsDtoResponse newsDtoResponse=new NewsDtoResponse();
         try {
             System.out.println(UPDATE_NEWS);
             System.out.println(ENTER_NEWS_ID);
@@ -81,7 +93,8 @@ public class ServiceImpl implements Service {
                 if (repository.isAuthorOnList(newsModelRequest.getAuthorId())) {
                     if ((lengthBetween5And30Symbols(newsModelRequest.getTitle())) &&
                             (lengthBetween5And255Symbols(newsModelRequest.getContent()))){
-                            repository.updateNews(newsModelRequestWithIndex);
+                            NewsModelResponse newsModelResponse=repository.updateNews(newsModelRequestWithIndex);
+                            newsDtoResponse.map(newsModelResponse);
                     }
                 } else {
                     throw new AuthorIdDoesNotExistException(newsModelRequest.getAuthorId());
@@ -92,10 +105,11 @@ public class ServiceImpl implements Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return newsDtoResponse;
     }
 
     @Override
-    public void removeNews() {
+    public void deleteNews() {
         try {
             System.out.println(REMOVE_NEWS);
             System.out.println(ENTER_NEWS_ID);

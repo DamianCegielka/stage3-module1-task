@@ -34,10 +34,10 @@ public class ControllerImpl implements Controller {
 
                 switch (chosenNumber) {
                     case 1 -> service.readAllNews();
-                    case 2 -> service.readNewsById();
+                    case 2 -> service.readByIdNews();
                     case 3 -> service.createNews();
                     case 4 -> service.updateNews();
-                    case 5 -> service.removeNews();
+                    case 5 -> service.deleteNews();
                     case 0 -> System.out.println("By by!");
                     default -> System.out.println("Error!");
                 }
