@@ -79,4 +79,5 @@ public class NewsModelResponse {
         this.setLastUpdateTime(news.getLastUpdateTime());
         this.setAuthorId(news.getAuthorId());
     }
+
 }

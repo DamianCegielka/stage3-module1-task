@@ -1,7 +1,10 @@
 package com.mjc.school.service;
 
 import com.mjc.school.repository.dto.NewsModelRequest;
+import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.entity.News;
+import com.mjc.school.service.dto.NewsDtoRequest;
+import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.LengthIsNotBetween5and255Exception;
 
@@ -14,13 +17,13 @@ public interface Service {
 
     List<News> readAllNews() throws IOException;
 
-    void readByIdNews();
+    NewsDtoResponse readByIdNews(Long indexValue);
 
-    NewsDtoResponse createNews();
+    NewsDtoResponse createNews(NewsDtoRequest newsDtoRequest);
 
-    NewsDtoResponse updateNews();
+    NewsDtoResponse updateNews(NewsDtoRequestWithIndex newsDtoRequestWithIndex);
 
-    void deleteNews();
+    Boolean deleteNews();
 
     NewsModelRequest askQuestionsToGetDtoRequest();
 

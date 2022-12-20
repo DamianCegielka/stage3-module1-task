@@ -1,7 +1,6 @@
 package com.mjc.school.service.dto;
 
 import com.mjc.school.repository.dto.NewsModelResponse;
-import com.mjc.school.repository.entity.News;
 
 import java.time.LocalDateTime;
 
@@ -62,17 +61,17 @@ public class NewsDtoResponse {
         this.authorId = authorId;
     }
 
-    public void print(){
+    public void print() {
         System.out.print("NewsDtoResponse[");
-        System.out.print("id="+this.getId()+",");
-        System.out.print("title="+this.getTitle()+",");
-        System.out.print("content="+this.getContent()+",");
-        System.out.print("createDate="+this.getCreateDate()+",");
-        System.out.print("lastUpdatedDate="+this.getLastUpdateTime()+",");
-        System.out.println("authorId="+this.getAuthorId()+"]");
+        System.out.print("id=" + this.getId() + ",");
+        System.out.print("title=" + this.getTitle() + ",");
+        System.out.print("content=" + this.getContent() + ",");
+        System.out.print("createDate=" + this.getCreateDate() + ",");
+        System.out.print("lastUpdatedDate=" + this.getLastUpdateTime() + ",");
+        System.out.println("authorId=" + this.getAuthorId() + "]");
     }
 
-    public void map(NewsModelResponse news){
+    public void map(NewsModelResponse news) {
         this.setId(news.getId());
         this.setTitle(news.getTitle());
         this.setContent(news.getContent());
@@ -80,4 +79,5 @@ public class NewsDtoResponse {
         this.setLastUpdateTime(news.getLastUpdateTime());
         this.setAuthorId(news.getAuthorId());
     }
+
 }
