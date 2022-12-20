@@ -1,6 +1,5 @@
 package com.mjc.school.service.dto;
 
-import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 
 public class NewsDtoRequestWithIndex {
@@ -10,7 +9,9 @@ public class NewsDtoRequestWithIndex {
     private String content;
     private Long authorId;
 
-    public Long getIndex() { return index; }
+    public Long getIndex() {
+        return index;
+    }
 
     public String getTitle() {
         return title;
@@ -24,7 +25,9 @@ public class NewsDtoRequestWithIndex {
         return authorId;
     }
 
-    public void setIndex(Long index) { this.index = index; }
+    public void setIndex(Long index) {
+        this.index = index;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -38,12 +41,12 @@ public class NewsDtoRequestWithIndex {
         this.authorId = authorId;
     }
 
-    public NewsModelRequestWithIndex mapToNewsModelRequestWithIndex(){
-        NewsModelRequestWithIndex newsModelRequest=new NewsModelRequestWithIndex();
+    public NewsModelRequestWithIndex mapToNewsModelRequestWithIndex() {
+        NewsModelRequestWithIndex newsModelRequest = new NewsModelRequestWithIndex();
         newsModelRequest.setIndex(this.getIndex());
         newsModelRequest.setTitle(this.getTitle());
         newsModelRequest.setContent(this.getContent());
         newsModelRequest.setAuthorId(this.getAuthorId());
-        return  newsModelRequest;
+        return newsModelRequest;
     }
 }

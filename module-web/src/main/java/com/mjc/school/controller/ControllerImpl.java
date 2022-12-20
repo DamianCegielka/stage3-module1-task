@@ -3,7 +3,6 @@ package com.mjc.school.controller;
 import com.mjc.school.service.Service;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
-import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.impl.ServiceImpl;
 
 import java.io.BufferedReader;
@@ -22,6 +21,8 @@ public class ControllerImpl implements Controller {
                     5 - Remove news by id.
                     0 - Exit.
                     """;
+
+    private static final String GET_ALL_NEWS = "Operation: Get all news.";
     private static final String GET_NEWS_ID = "Operation: Get news by id.";
     private static final String ENTER_NEWS_ID = "Enter news id";
     private static final String ENTER_TITLE = "Enter news title:";
@@ -30,11 +31,13 @@ public class ControllerImpl implements Controller {
     private static final String CREATE_NEWS = "Create news.";
     private static final String UPDATE_NEWS = "Operation: Update news.";
 
+    private static final String REMOVE_NEWS = "Operation: Remove news by id.";
+
 
     private int chosenNumber = -1;
 
     @Override
-    public void mainController() {
+    public void mainController() throws IOException {
 
         Service service = new ServiceImpl();
         service.loadAllData();
@@ -44,7 +47,10 @@ public class ControllerImpl implements Controller {
                 chosenNumber = takeNumberFromKeyboard();
 
                 switch (chosenNumber) {
-                    case 1 -> service.readAllNews();
+                    case 1 ->{
+                        System.out.println(GET_ALL_NEWS);
+                        service.readAllNews();
+                    }
                     case 2 -> service.readByIdNews(this.takeIdForNews());
                     case 3 -> {
                         System.out.println(CREATE_NEWS);
@@ -54,7 +60,10 @@ public class ControllerImpl implements Controller {
                         System.out.println(UPDATE_NEWS);
                         service.updateNews(this.askQuestionsTOGetDtoRequestWithIndex());
                     }
-                    case 5 -> service.deleteNews();
+                    case 5 -> {
+                        System.out.println(REMOVE_NEWS);
+                        service.deleteNews(this.takeIdForDelete());
+                    }
                     case 0 -> System.out.println("By by!");
                     default -> System.out.println("Error!");
                 }
@@ -79,6 +88,11 @@ public class ControllerImpl implements Controller {
     @Override
     public Long takeIdForNews() throws IOException {
         System.out.println(GET_NEWS_ID);
+        System.out.println(ENTER_NEWS_ID);
+        return Long.valueOf(takeNumberFromKeyboard());
+    }
+
+    public Long takeIdForDelete() throws IOException {
         System.out.println(ENTER_NEWS_ID);
         return Long.valueOf(takeNumberFromKeyboard());
     }
