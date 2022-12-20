@@ -1,9 +1,10 @@
-package com.mjc.school.service;
+package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.impl.RepositoryImpl;
 import com.mjc.school.repository.dto.NewsModelRequest;
+import com.mjc.school.service.Service;
 import com.mjc.school.service.exception.*;
 
 import java.io.BufferedReader;

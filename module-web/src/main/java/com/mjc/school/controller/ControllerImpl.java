@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.mjc.school.service.Service;
-import com.mjc.school.service.ServiceImpl;
+import com.mjc.school.service.impl.ServiceImpl;
 
 public class ControllerImpl implements Controller {
 
