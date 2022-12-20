@@ -30,9 +30,7 @@ public class ControllerImpl implements Controller {
     private static final String ENTER_AUTHOR_ID = "Enter author id";
     private static final String CREATE_NEWS = "Create news.";
     private static final String UPDATE_NEWS = "Operation: Update news.";
-
     private static final String REMOVE_NEWS = "Operation: Remove news by id.";
-
 
     private int chosenNumber = -1;
 
@@ -47,7 +45,7 @@ public class ControllerImpl implements Controller {
                 chosenNumber = takeNumberFromKeyboard();
 
                 switch (chosenNumber) {
-                    case 1 ->{
+                    case 1 -> {
                         System.out.println(GET_ALL_NEWS);
                         service.readAllNews();
                     }

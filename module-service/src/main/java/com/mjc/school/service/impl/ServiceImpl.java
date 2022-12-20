@@ -18,9 +18,7 @@ import java.util.List;
 public class ServiceImpl implements Service {
 
     private final Repository serviceRepository = new RepositoryImpl();
-
     private final Validator serviceValidator = new Validator();
-
 
 
     public void loadAllData() {
@@ -46,7 +44,6 @@ public class ServiceImpl implements Service {
             e.printStackTrace();
         }
         return newsDtoResponse;
-
     }
 
     @Override
