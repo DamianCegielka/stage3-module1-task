@@ -1,7 +1,7 @@
 package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.DataSource;
-import com.mjc.school.repository.Repository;
+import com.mjc.school.repository.RepositoryModel;
 import com.mjc.school.repository.dto.NewsModelRequest;
 import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositoryImpl implements Repository {
+public class RepositoryModelImpl implements RepositoryModel {
 
     private final DataSource dataSource = new DataSource();
     private List<News> listNews = dataSource.getListNews();

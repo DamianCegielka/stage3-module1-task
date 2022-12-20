@@ -8,7 +8,7 @@ import com.mjc.school.repository.entity.News;
 import java.io.IOException;
 import java.util.List;
 
-public interface Repository {
+public interface RepositoryModel {
 
     void loadDataFromDataSource();
 

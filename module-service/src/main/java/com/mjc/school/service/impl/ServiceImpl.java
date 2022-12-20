@@ -1,9 +1,9 @@
 package com.mjc.school.service.impl;
 
-import com.mjc.school.repository.Repository;
+import com.mjc.school.repository.RepositoryModel;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.News;
-import com.mjc.school.repository.impl.RepositoryImpl;
+import com.mjc.school.repository.impl.RepositoryModelImpl;
 import com.mjc.school.service.Service;
 import com.mjc.school.service.Validator;
 import com.mjc.school.service.dto.NewsDtoRequest;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ServiceImpl implements Service {
 
-    private final Repository serviceRepository = new RepositoryImpl();
+    private final RepositoryModel serviceRepository = new RepositoryModelImpl();
     private final Validator serviceValidator = new Validator();
 
 
