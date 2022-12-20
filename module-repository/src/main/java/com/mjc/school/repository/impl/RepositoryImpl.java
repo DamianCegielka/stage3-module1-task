@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RepositoryImpl implements Repository {
 
-    private DataSource dataSource = new DataSource();
+    private final DataSource dataSource = new DataSource();
     private List<News> listNews = dataSource.getListNews();
     private ArrayList<Author> listAuthor = dataSource.getListAuthor();
 
