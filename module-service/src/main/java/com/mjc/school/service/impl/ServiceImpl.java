@@ -17,27 +17,27 @@ import java.util.List;
 
 public class ServiceImpl implements Service {
 
-    private final Repository repository = new RepositoryImpl();
+    private final Repository serviceRepository = new RepositoryImpl();
 
-    private final Validator validator = new Validator();
+    private final Validator serviceValidator = new Validator();
 
 
 
     public void loadAllData() {
-        repository.loadDataFromDataSource();
+        serviceRepository.loadDataFromDataSource();
     }
 
     @Override
     public List<News> readAllNews() throws IOException {
-        return repository.readAllNews();
+        return serviceRepository.readAllNews();
     }
 
     @Override
     public NewsDtoResponse readByIdNews(Long index) {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
-            if (repository.isNewsOnList(index)) {
-                NewsModelResponse newsModelResponse = repository.readByIdNews(index);
+            if (serviceRepository.isNewsOnList(index)) {
+                NewsModelResponse newsModelResponse = serviceRepository.readByIdNews(index);
                 newsDtoResponse.map(newsModelResponse);
             } else {
                 throw new NewsDoesNotExistException(index);
@@ -53,12 +53,12 @@ public class ServiceImpl implements Service {
     public NewsDtoResponse createNews(NewsDtoRequest newsDtoRequest) {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
-            validator.lengthBetween5And30Symbols(newsDtoRequest.getTitle());
-            validator.lengthBetween5And255Symbols(newsDtoRequest.getContent());
-            if (!repository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
+            serviceValidator.lengthBetween5And30Symbols(newsDtoRequest.getTitle());
+            serviceValidator.lengthBetween5And255Symbols(newsDtoRequest.getContent());
+            if (!serviceRepository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
                 throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());
             }
-            NewsModelResponse newsModelResponse = repository.createNews(newsDtoRequest.mapToNewsModelRequest());
+            NewsModelResponse newsModelResponse = serviceRepository.createNews(newsDtoRequest.mapToNewsModelRequest());
             newsDtoResponse.map(newsModelResponse);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,11 +70,11 @@ public class ServiceImpl implements Service {
     public NewsDtoResponse updateNews(NewsDtoRequestWithIndex newsDtoRequestWithIndex) {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
-            if (repository.isNewsOnList(newsDtoRequestWithIndex.getIndex())) {
-                if (repository.isAuthorOnList(newsDtoRequestWithIndex.getAuthorId())) {
-                    if ((validator.lengthBetween5And30Symbols(newsDtoRequestWithIndex.getTitle())) &&
-                            (validator.lengthBetween5And255Symbols(newsDtoRequestWithIndex.getContent()))) {
-                        NewsModelResponse newsModelResponse = repository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequestWithIndex());
+            if (serviceRepository.isNewsOnList(newsDtoRequestWithIndex.getIndex())) {
+                if (serviceRepository.isAuthorOnList(newsDtoRequestWithIndex.getAuthorId())) {
+                    if ((serviceValidator.lengthBetween5And30Symbols(newsDtoRequestWithIndex.getTitle())) &&
+                            (serviceValidator.lengthBetween5And255Symbols(newsDtoRequestWithIndex.getContent()))) {
+                        NewsModelResponse newsModelResponse = serviceRepository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequestWithIndex());
                         newsDtoResponse.map(newsModelResponse);
                     }
                 } else {
@@ -93,8 +93,8 @@ public class ServiceImpl implements Service {
     public Boolean deleteNews(Long index) {
         Boolean result = false;
         try {
-            if (repository.isNewsOnList(index)) {
-                result = repository.deleteNews(index);
+            if (serviceRepository.isNewsOnList(index)) {
+                result = serviceRepository.deleteNews(index);
             } else {
                 throw new NewsDoesNotExistException(index);
             }
