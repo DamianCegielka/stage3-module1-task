@@ -12,6 +12,7 @@ public class NewsDtoRequest {
     public String getTitle() {
         return title;
     }
+
     public String getContent() {
         return content;
     }
@@ -32,11 +33,11 @@ public class NewsDtoRequest {
         this.authorId = authorId;
     }
 
-    public NewsModelRequest mapToNewsModelRequest(){
-        NewsModelRequest newsModelRequest=new NewsModelRequest();
+    public NewsModelRequest mapToNewsModelRequest() {
+        NewsModelRequest newsModelRequest = new NewsModelRequest();
         newsModelRequest.setTitle(this.getTitle());
         newsModelRequest.setContent(this.getContent());
         newsModelRequest.setAuthorId(this.getAuthorId());
-        return  newsModelRequest;
+        return newsModelRequest;
     }
 }

@@ -7,7 +7,7 @@ import com.mjc.school.service.dto.NewsDtoResponse;
 import java.io.IOException;
 import java.util.List;
 
-public interface Service {
+public interface ServiceDto {
 
     void loadAllData();
 

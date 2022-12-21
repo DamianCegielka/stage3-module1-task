@@ -5,13 +5,10 @@ public class NewsModelRequest {
     String content;
     Long authorId;
 
-    public NewsModelRequest() {
-        //This is empty Constructor
-    }
-
     public String getTitle() {
         return title;
     }
+
     public String getContent() {
         return content;
     }

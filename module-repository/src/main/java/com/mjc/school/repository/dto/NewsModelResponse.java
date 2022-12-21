@@ -61,17 +61,17 @@ public class NewsModelResponse {
         this.authorId = authorId;
     }
 
-    public void print(){
+    public void print() {
         System.out.print("NewsDtoResponse[");
-        System.out.print("id="+this.getId()+",");
-        System.out.print("title="+this.getTitle()+",");
-        System.out.print("content="+this.getContent()+",");
-        System.out.print("createDate="+this.getCreateDate()+",");
-        System.out.print("lastUpdatedDate="+this.getLastUpdateTime()+",");
-        System.out.println("authorId="+this.getAuthorId()+"]");
+        System.out.print("id=" + this.getId() + ",");
+        System.out.print("title=" + this.getTitle() + ",");
+        System.out.print("content=" + this.getContent() + ",");
+        System.out.print("createDate=" + this.getCreateDate() + ",");
+        System.out.print("lastUpdatedDate=" + this.getLastUpdateTime() + ",");
+        System.out.println("authorId=" + this.getAuthorId() + "]");
     }
 
-    public void map(News news){
+    public void map(News news) {
         this.setId(news.getId());
         this.setTitle(news.getTitle());
         this.setContent(news.getContent());

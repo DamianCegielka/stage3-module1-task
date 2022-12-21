@@ -7,7 +7,9 @@ public class NewsModelRequestWithIndex {
     private String content;
     private Long authorId;
 
-    public Long getIndex() { return index; }
+    public Long getIndex() {
+        return index;
+    }
 
     public String getTitle() {
         return title;
@@ -21,7 +23,9 @@ public class NewsModelRequestWithIndex {
         return authorId;
     }
 
-    public void setIndex(Long index) { this.index = index; }
+    public void setIndex(Long index) {
+        this.index = index;
+    }
 
     public void setTitle(String title) {
         this.title = title;
