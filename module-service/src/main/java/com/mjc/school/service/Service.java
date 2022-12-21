@@ -1,6 +1,5 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.entity.News;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
 import com.mjc.school.service.dto.NewsDtoResponse;
@@ -12,7 +11,7 @@ public interface Service {
 
     void loadAllData();
 
-    List<News> readAllNews() throws IOException;
+    List<NewsDtoResponse> readAllNews() throws IOException;
 
     NewsDtoResponse readByIdNews(Long indexValue);
 

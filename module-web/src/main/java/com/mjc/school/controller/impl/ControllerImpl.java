@@ -1,13 +1,16 @@
-package com.mjc.school.controller;
+package com.mjc.school.controller.impl;
 
+import com.mjc.school.controller.Controller;
 import com.mjc.school.service.Service;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
+import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.impl.ServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class ControllerImpl implements Controller {
 
@@ -32,13 +35,15 @@ public class ControllerImpl implements Controller {
     private static final String UPDATE_NEWS = "Operation: Update news.";
     private static final String REMOVE_NEWS = "Operation: Remove news by id.";
 
+    private final Service controllerService = new ServiceImpl();
+
     private int chosenNumber = -1;
+
 
     @Override
     public void mainController() throws IOException {
 
-        Service service = new ServiceImpl();
-        service.loadAllData();
+        controllerService.loadAllData();
         try {
             while (chosenNumber != 0) {
                 System.out.println(MENU_TEXT);
@@ -47,20 +52,23 @@ public class ControllerImpl implements Controller {
                 switch (chosenNumber) {
                     case 1 -> {
                         System.out.println(GET_ALL_NEWS);
-                        service.readAllNews();
+                        this.readAllNews();
                     }
-                    case 2 -> service.readByIdNews(this.takeIdForNews());
+                    case 2 -> {
+                        System.out.println(GET_NEWS_ID);
+                        this.readByIdNews(this.takeIdNews());
+                    }
                     case 3 -> {
                         System.out.println(CREATE_NEWS);
-                        service.createNews(this.askQuestionsToGetDtoRequest());
+                        this.createNews(this.askQuestionsToGetDtoRequest());
                     }
                     case 4 -> {
                         System.out.println(UPDATE_NEWS);
-                        service.updateNews(this.askQuestionsTOGetDtoRequestWithIndex());
+                        this.updateNews(this.askQuestionsTOGetDtoRequestWithIndex());
                     }
                     case 5 -> {
                         System.out.println(REMOVE_NEWS);
-                        service.deleteNews(this.takeIdForDelete());
+                        this.deleteNews(this.takeIdNews());
                     }
                     case 0 -> System.out.println("By by!");
                     default -> System.out.println("Error!");
@@ -83,14 +91,8 @@ public class ControllerImpl implements Controller {
         return bufferedreader.readLine();
     }
 
-    @Override
-    public Long takeIdForNews() throws IOException {
-        System.out.println(GET_NEWS_ID);
-        System.out.println(ENTER_NEWS_ID);
-        return Long.valueOf(takeNumberFromKeyboard());
-    }
 
-    public Long takeIdForDelete() throws IOException {
+    public Long takeIdNews() throws IOException {
         System.out.println(ENTER_NEWS_ID);
         return Long.valueOf(takeNumberFromKeyboard());
     }
@@ -124,5 +126,54 @@ public class ControllerImpl implements Controller {
         return newsDtoRequestWithIndex;
     }
 
+    @Override
+    public List<NewsDtoResponse> readAllNews() throws IOException {
+       return controllerService.readAllNews();
+    }
+
+    @Override
+    public NewsDtoResponse readByIdNews(Long index) {
+        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+        try {
+            newsDtoResponse = controllerService.readByIdNews(index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newsDtoResponse;
+    }
+
+    @Override
+    public NewsDtoResponse createNews(NewsDtoRequest newsDtoRequest) {
+        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+        try {
+            newsDtoResponse = controllerService.createNews(newsDtoRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newsDtoResponse;
+    }
+
+    @Override
+    public NewsDtoResponse updateNews(NewsDtoRequestWithIndex newsDtoRequestWithIndex) {
+        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+        try {
+            newsDtoResponse = controllerService.updateNews(newsDtoRequestWithIndex);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newsDtoResponse;
+    }
+
+    @Override
+    public Boolean deleteNews(Long index) {
+        Boolean result = false;
+        try {
+            result = controllerService.deleteNews(index);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }

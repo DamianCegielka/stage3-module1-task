@@ -2,7 +2,6 @@ package com.mjc.school.service.impl;
 
 import com.mjc.school.repository.RepositoryModel;
 import com.mjc.school.repository.dto.NewsModelResponse;
-import com.mjc.school.repository.entity.News;
 import com.mjc.school.repository.impl.RepositoryModelImpl;
 import com.mjc.school.service.Service;
 import com.mjc.school.service.Validator;
@@ -13,6 +12,7 @@ import com.mjc.school.service.exception.AuthorIdDoesNotExistException;
 import com.mjc.school.service.exception.NewsDoesNotExistException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceImpl implements Service {
@@ -26,8 +26,12 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public List<News> readAllNews() throws IOException {
-        return serviceRepository.readAllNews();
+    public List<NewsDtoResponse> readAllNews() throws IOException {
+        List<NewsDtoResponse> listResult = new ArrayList<>();
+        NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
+        serviceRepository.readAllNews().forEach(x ->
+            listResult.add(newsDtoResponse.map(x)));
+        return listResult;
     }
 
     @Override
