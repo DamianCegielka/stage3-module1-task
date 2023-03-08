@@ -21,7 +21,6 @@ public class ServiceDtoImpl implements ServiceDto {
     private final RepositoryModel serviceRepository = new RepositoryModelImpl();
     private final Validator serviceValidator = new Validator();
 
-
     public void loadAllData() {
         serviceRepository.loadDataFromDataSource();
     }
@@ -58,12 +57,13 @@ public class ServiceDtoImpl implements ServiceDto {
             serviceValidator.lengthBetween5And30Symbols(newsDtoRequest.getTitle());
             serviceValidator.lengthBetween5And255Symbols(newsDtoRequest.getContent());
             if (!serviceRepository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
-                throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),newsDtoRequest.getAuthorId()));
+                throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
+                                                                        newsDtoRequest.getAuthorId()));
             }
             NewsModelResponse newsModelResponse = serviceRepository.createNews(newsDtoRequest.mapToNewsModelRequest());
             newsDtoResponse.map(newsModelResponse);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (AuthorIdDoesNotExistException ex) {
+            System.out.println(ex.getMessage());
         }
         return newsDtoResponse;
     }
@@ -85,8 +85,8 @@ public class ServiceDtoImpl implements ServiceDto {
             } else {
                 throw new NewsDoesNotExistException(newsDtoRequestWithIndex.getIndex());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
         return newsDtoResponse;
     }

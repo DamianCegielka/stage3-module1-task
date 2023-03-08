@@ -5,6 +5,7 @@ import com.mjc.school.service.ServiceDto;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
 import com.mjc.school.service.dto.NewsDtoResponse;
+import com.mjc.school.service.exception.AuthorIdDoesNotExistException;
 import com.mjc.school.service.impl.ServiceDtoImpl;
 
 import java.io.BufferedReader;
@@ -74,8 +75,8 @@ public class ControllerImpl implements Controller {
                     default -> System.out.println("Error!");
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -147,7 +148,8 @@ public class ControllerImpl implements Controller {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
             newsDtoResponse = controllerServiceDto.createNews(newsDtoRequest);
-        } catch (Exception e) {
+        } catch (AuthorIdDoesNotExistException e) {
+            System.out.println("2");
             e.printStackTrace();
         }
         return newsDtoResponse;
