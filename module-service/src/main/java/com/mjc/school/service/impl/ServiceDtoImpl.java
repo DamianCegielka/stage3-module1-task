@@ -9,6 +9,7 @@ import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequestWithIndex;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import com.mjc.school.service.exception.AuthorIdDoesNotExistException;
+import com.mjc.school.service.exception.ErrorCodes;
 import com.mjc.school.service.exception.NewsDoesNotExistException;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class ServiceDtoImpl implements ServiceDto {
             serviceValidator.lengthBetween5And30Symbols(newsDtoRequest.getTitle());
             serviceValidator.lengthBetween5And255Symbols(newsDtoRequest.getContent());
             if (!serviceRepository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
-                throw new AuthorIdDoesNotExistException(newsDtoRequest.getAuthorId());
+                throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),newsDtoRequest.getAuthorId()));
             }
             NewsModelResponse newsModelResponse = serviceRepository.createNews(newsDtoRequest.mapToNewsModelRequest());
             newsDtoResponse.map(newsModelResponse);
@@ -79,7 +80,7 @@ public class ServiceDtoImpl implements ServiceDto {
                         newsDtoResponse.map(newsModelResponse);
                     }
                 } else {
-                    throw new AuthorIdDoesNotExistException(newsDtoRequestWithIndex.getAuthorId());
+                    throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(), newsDtoRequestWithIndex.getAuthorId()));
                 }
             } else {
                 throw new NewsDoesNotExistException(newsDtoRequestWithIndex.getIndex());
