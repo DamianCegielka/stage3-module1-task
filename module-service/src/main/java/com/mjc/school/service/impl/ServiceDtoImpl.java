@@ -45,7 +45,7 @@ public class ServiceDtoImpl implements ServiceDto {
                 throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
                         index));
             }
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
         }
         return newsDtoResponse;
