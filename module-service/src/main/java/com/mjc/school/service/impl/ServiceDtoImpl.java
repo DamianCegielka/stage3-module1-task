@@ -42,10 +42,11 @@ public class ServiceDtoImpl implements ServiceDto {
                 NewsModelResponse newsModelResponse = serviceRepository.readByIdNews(index);
                 newsDtoResponse.map(newsModelResponse);
             } else {
-                throw new NewsDoesNotExistException(index);
+                throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
+                                                    index));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
         return newsDtoResponse;
     }
@@ -80,10 +81,12 @@ public class ServiceDtoImpl implements ServiceDto {
                         newsDtoResponse.map(newsModelResponse);
                     }
                 } else {
-                    throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(), newsDtoRequestWithIndex.getAuthorId()));
+                    throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
+                            newsDtoRequestWithIndex.getAuthorId()));
                 }
             } else {
-                throw new NewsDoesNotExistException(newsDtoRequestWithIndex.getIndex());
+                throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
+                        newsDtoRequestWithIndex.getIndex()));
             }
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
@@ -98,10 +101,11 @@ public class ServiceDtoImpl implements ServiceDto {
             if (serviceRepository.isNewsOnList(index)) {
                 result = serviceRepository.deleteNews(index);
             } else {
-                throw new NewsDoesNotExistException(index);
+                throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
+                        index));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
         return result;
     }
