@@ -38,8 +38,10 @@ public class ModelRepositoryImpl implements ModelRepository {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(index);
-            if (b) newsModelResponse.map(x);
-            if (b) newsModelResponse.print();
+            if (b){
+                newsModelResponse.map(x);
+                newsModelResponse.print();
+            }
         });
         return newsModelResponse;
     }
@@ -59,13 +61,14 @@ public class ModelRepositoryImpl implements ModelRepository {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
             boolean b = x.getId().equals(newsModelRequest.getIndex());
-            if (b) x.setTitle(newsModelRequest.getTitle());
-            if (b) x.setContent(newsModelRequest.getContent());
-            if (b) x.setAuthorId(newsModelRequest.getAuthorId());
-            if (b) x.setLastUpdateTime(LocalDateTime.now());
-            if (b) newsModelResponse.map(x);
-            if (b) newsModelResponse.print();
-
+            if (b) {
+                x.setTitle(newsModelRequest.getTitle());
+                x.setContent(newsModelRequest.getContent());
+                x.setAuthorId(newsModelRequest.getAuthorId());
+                x.setLastUpdateTime(LocalDateTime.now());
+                newsModelResponse.map(x);
+                newsModelResponse.print();
+            }
         });
         return newsModelResponse;
     }
