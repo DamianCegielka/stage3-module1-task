@@ -1,8 +1,8 @@
 package com.mjc.school.service.impl;
 
-import com.mjc.school.repository.RepositoryModel;
+import com.mjc.school.repository.ModelRepository;
 import com.mjc.school.repository.dto.NewsModelResponse;
-import com.mjc.school.repository.impl.RepositoryModelImpl;
+import com.mjc.school.repository.impl.ModelRepositoryImpl;
 import com.mjc.school.service.ServiceDto;
 import com.mjc.school.service.Validator;
 import com.mjc.school.service.dto.NewsDtoRequest;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ServiceDtoImpl implements ServiceDto {
 
-    private final RepositoryModel serviceRepository = new RepositoryModelImpl();
+    private final ModelRepository serviceRepository = new ModelRepositoryImpl();
     private final Validator serviceValidator = new Validator();
 
     public void loadAllData() {
