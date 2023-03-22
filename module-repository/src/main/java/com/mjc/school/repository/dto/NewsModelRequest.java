@@ -1,10 +1,15 @@
 package com.mjc.school.repository.dto;
 
 public class NewsModelRequest {
+
+    private Long index;
     String title;
     String content;
     Long authorId;
 
+    public Long getIndex() {
+        return index;
+    }
     public String getTitle() {
         return title;
     }
@@ -15,6 +20,10 @@ public class NewsModelRequest {
 
     public Long getAuthorId() {
         return authorId;
+    }
+
+    public void setIndex(Long index) {
+        this.index = index;
     }
 
     public void setTitle(String title) {

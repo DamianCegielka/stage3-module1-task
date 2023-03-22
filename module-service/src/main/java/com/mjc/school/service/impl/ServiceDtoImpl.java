@@ -55,8 +55,8 @@ public class ServiceDtoImpl implements ServiceDto {
     public NewsDtoResponse createNews(NewsDtoRequest newsDtoRequest) {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
-            serviceValidator.lengthBetween5And30Symbols(newsDtoRequest.getTitle());
-            serviceValidator.lengthBetween5And255Symbols(newsDtoRequest.getContent());
+            serviceValidator.validateLengthNewsTitle(newsDtoRequest.getTitle());
+            serviceValidator.validateLengthNewsContent(newsDtoRequest.getContent());
             if (!serviceRepository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
                 throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
                                                                         newsDtoRequest.getAuthorId()));
@@ -75,9 +75,9 @@ public class ServiceDtoImpl implements ServiceDto {
         try {
             if (serviceRepository.isNewsOnList(newsDtoRequestWithIndex.getIndex())) {
                 if (serviceRepository.isAuthorOnList(newsDtoRequestWithIndex.getAuthorId())) {
-                    if ((serviceValidator.lengthBetween5And30Symbols(newsDtoRequestWithIndex.getTitle())) &&
-                            (serviceValidator.lengthBetween5And255Symbols(newsDtoRequestWithIndex.getContent()))) {
-                        NewsModelResponse newsModelResponse = serviceRepository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequestWithIndex());
+                    if ((serviceValidator.validateLengthNewsTitle(newsDtoRequestWithIndex.getTitle())) &&
+                            (serviceValidator.validateLengthNewsContent(newsDtoRequestWithIndex.getContent()))) {
+                        NewsModelResponse newsModelResponse = serviceRepository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequest());
                         newsDtoResponse.map(newsModelResponse);
                     }
                 } else {

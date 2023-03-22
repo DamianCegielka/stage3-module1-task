@@ -1,7 +1,6 @@
 package com.mjc.school.repository;
 
 import com.mjc.school.repository.dto.NewsModelRequest;
-import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.News;
 
@@ -18,7 +17,7 @@ public interface RepositoryModel {
 
     NewsModelResponse createNews(NewsModelRequest newsModelRequest);
 
-    NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex);
+    NewsModelResponse updateNews(NewsModelRequest newsModelRequest);
 
     Boolean deleteNews(Long index) throws IOException;
 

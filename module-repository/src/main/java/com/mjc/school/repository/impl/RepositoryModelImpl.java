@@ -3,7 +3,6 @@ package com.mjc.school.repository.impl;
 import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.RepositoryModel;
 import com.mjc.school.repository.dto.NewsModelRequest;
-import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
 import com.mjc.school.repository.dto.NewsModelResponse;
 import com.mjc.school.repository.entity.Author;
 import com.mjc.school.repository.entity.News;
@@ -60,13 +59,13 @@ public class RepositoryModelImpl implements RepositoryModel {
     }
 
     @Override
-    public NewsModelResponse updateNews(NewsModelRequestWithIndex newsModelRequestWithIndex) {
+    public NewsModelResponse updateNews(NewsModelRequest newsModelRequest) {
         NewsModelResponse newsModelResponse = new NewsModelResponse();
         listNews.forEach(x -> {
-            boolean b = x.getId().equals(newsModelRequestWithIndex.getIndex());
-            if (b) x.setTitle(newsModelRequestWithIndex.getTitle());
-            if (b) x.setContent(newsModelRequestWithIndex.getContent());
-            if (b) x.setAuthorId(newsModelRequestWithIndex.getAuthorId());
+            boolean b = x.getId().equals(newsModelRequest.getIndex());
+            if (b) x.setTitle(newsModelRequest.getTitle());
+            if (b) x.setContent(newsModelRequest.getContent());
+            if (b) x.setAuthorId(newsModelRequest.getAuthorId());
             if (b) x.setLastUpdateTime(LocalDateTime.now());
             if (b) newsModelResponse.map(x);
             if (b) newsModelResponse.print();

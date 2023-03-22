@@ -1,6 +1,6 @@
 package com.mjc.school.service.dto;
 
-import com.mjc.school.repository.dto.NewsModelRequestWithIndex;
+import com.mjc.school.repository.dto.NewsModelRequest;
 
 public class NewsDtoRequestWithIndex {
 
@@ -41,8 +41,8 @@ public class NewsDtoRequestWithIndex {
         this.authorId = authorId;
     }
 
-    public NewsModelRequestWithIndex mapToNewsModelRequestWithIndex() {
-        NewsModelRequestWithIndex newsModelRequest = new NewsModelRequestWithIndex();
+    public NewsModelRequest mapToNewsModelRequest() {
+        NewsModelRequest newsModelRequest = new NewsModelRequest();
         newsModelRequest.setIndex(this.getIndex());
         newsModelRequest.setTitle(this.getTitle());
         newsModelRequest.setContent(this.getContent());
