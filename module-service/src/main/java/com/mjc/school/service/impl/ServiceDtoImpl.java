@@ -43,7 +43,7 @@ public class ServiceDtoImpl implements ServiceDto {
                 newsDtoResponse.map(newsModelResponse);
             } else {
                 throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
-                                                    index));
+                        index));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -59,7 +59,7 @@ public class ServiceDtoImpl implements ServiceDto {
             serviceValidator.validateLengthNewsContent(newsDtoRequest.getContent());
             if (!serviceRepository.isAuthorOnList(newsDtoRequest.getAuthorId())) {
                 throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
-                                                                        newsDtoRequest.getAuthorId()));
+                        newsDtoRequest.getAuthorId()));
             }
             NewsModelResponse newsModelResponse = serviceRepository.createNews(newsDtoRequest.mapToNewsModelRequest());
             newsDtoResponse.map(newsModelResponse);
@@ -73,20 +73,18 @@ public class ServiceDtoImpl implements ServiceDto {
     public NewsDtoResponse updateNews(NewsDtoRequestWithIndex newsDtoRequestWithIndex) {
         NewsDtoResponse newsDtoResponse = new NewsDtoResponse();
         try {
-            if (serviceRepository.isNewsOnList(newsDtoRequestWithIndex.getIndex())) {
-                if (serviceRepository.isAuthorOnList(newsDtoRequestWithIndex.getAuthorId())) {
-                    if ((serviceValidator.validateLengthNewsTitle(newsDtoRequestWithIndex.getTitle())) &&
-                            (serviceValidator.validateLengthNewsContent(newsDtoRequestWithIndex.getContent()))) {
-                        NewsModelResponse newsModelResponse = serviceRepository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequest());
-                        newsDtoResponse.map(newsModelResponse);
-                    }
-                } else {
-                    throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
-                            newsDtoRequestWithIndex.getAuthorId()));
-                }
-            } else {
+            if (!serviceRepository.isNewsOnList(newsDtoRequestWithIndex.getIndex())) {
                 throw new NewsDoesNotExistException(String.format(ErrorCodes.NEWS_ID_DOES_NOT_EXIST.getMessage(),
                         newsDtoRequestWithIndex.getIndex()));
+            }
+            if (!serviceRepository.isAuthorOnList(newsDtoRequestWithIndex.getAuthorId())) {
+                throw new AuthorIdDoesNotExistException(String.format(ErrorCodes.AUTHOR_ID_DOES_NOT_EXIST.getMessage(),
+                        newsDtoRequestWithIndex.getAuthorId()));
+            }
+            if ((serviceValidator.validateLengthNewsTitle(newsDtoRequestWithIndex.getTitle())) &&
+                    (serviceValidator.validateLengthNewsContent(newsDtoRequestWithIndex.getContent()))) {
+                NewsModelResponse newsModelResponse = serviceRepository.updateNews(newsDtoRequestWithIndex.mapToNewsModelRequest());
+                newsDtoResponse.map(newsModelResponse);
             }
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());

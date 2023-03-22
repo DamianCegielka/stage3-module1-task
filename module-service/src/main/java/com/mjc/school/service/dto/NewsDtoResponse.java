@@ -81,8 +81,8 @@ public class NewsDtoResponse {
         this.setAuthorId(news.getAuthorId());
     }
 
-    public NewsDtoResponse map(News news) {
-        this.setId(news.getId());
+    public  NewsDtoResponse map(News news) {
+        setId(news.getId());
         this.setTitle(news.getTitle());
         this.setContent(news.getContent());
         this.setCreateDate(news.getCreateDate());

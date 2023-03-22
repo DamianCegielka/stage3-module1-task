@@ -25,15 +25,11 @@ public class ModelRepositoryImpl implements ModelRepository {
 
     @Override
     public List<News> readAllNews() {
-        try {
             NewsModelResponse newsModelResponse = new NewsModelResponse();
             listNews.forEach(x -> {
                 newsModelResponse.map(x);
                 newsModelResponse.print();
             });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return listNews;
     }
 

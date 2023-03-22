@@ -9,17 +9,7 @@ import java.util.List;
 
 public interface Controller {
 
-    void mainController() throws IOException;
-
-    int takeNumberFromKeyboard() throws IOException;
-
-    String takeStringFromKeyboard() throws IOException;
-
-    Long takeIdNews() throws IOException;
-
-    NewsDtoRequest askQuestionsToGetDtoRequest();
-
-    NewsDtoRequestWithIndex askQuestionsTOGetDtoRequestWithIndex() throws IOException;
+    void loadData() throws IOException;
 
     List<NewsDtoResponse> readAllNews() throws IOException;
 
